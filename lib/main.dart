@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
 }
+late TextEditingController _controller;
+late TextEditingController _controller2;
+var imageSource;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -33,10 +36,24 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+  }
+  void buttonClicked() {
   }
 
   @override
@@ -57,6 +74,24 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            TextField(controller: _controller),
+            const TextField(
+                decoration: InputDecoration(
+                    hintText:"Login",
+                    border: OutlineInputBorder(),
+                    labelText: "Loginname"
+                )),
+            TextField(controller: _controller),
+            const TextField(
+                decoration: InputDecoration(
+                    hintText:"Password",
+                    border: OutlineInputBorder(),
+                    labelText: "Password"
+                )),
+            ElevatedButton(
+                onPressed: buttonClicked,
+                child:Image.asset(imageSource, width: 200, height:200)
+            )
           ],
         ),
       ),
