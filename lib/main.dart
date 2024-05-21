@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
 }
-late TextEditingController _controller;
+late TextEditingController _controller1;
 late TextEditingController _controller2;
-var imageSource;
+var imageSource = "images/question-mark.png";
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -39,21 +39,30 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
+    _controller1 = TextEditingController();
+    _controller2 = TextEditingController();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller1.dispose();
+    _controller2.dispose();
     super.dispose();
+  }
+  void buttonClicked() {
+    setState(() {
+      if (_controller2.text == "QWERTY123") {
+        imageSource = "images/idea.png";
+      } else {
+        imageSource = "images/stop.png";
+      }
+    });
   }
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
-  }
-  void buttonClicked() {
   }
 
   @override
@@ -68,20 +77,21 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'Login Page',
+              style: TextStyle(fontSize: 24)
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            TextField(controller: _controller),
+            TextField(controller: _controller1),
             const TextField(
                 decoration: InputDecoration(
                     hintText:"Login",
                     border: OutlineInputBorder(),
-                    labelText: "Loginname"
+                    labelText: "Login name"
                 )),
-            TextField(controller: _controller),
+            TextField(controller: _controller2),
             const TextField(
                 decoration: InputDecoration(
                     hintText:"Password",
@@ -89,9 +99,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     labelText: "Password"
                 )),
             ElevatedButton(
-                onPressed: buttonClicked,
-                child:Image.asset(imageSource, width: 200, height:200)
-            )
+              onPressed: () {
+                buttonClicked();
+              },
+              child: const Text("Login"),
+            ),
+            const SizedBox(height: 20),
+            Image.asset(imageSource, width: 300, height: 300),
           ],
         ),
       ),
