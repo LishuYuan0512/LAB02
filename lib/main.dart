@@ -76,24 +76,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Login Page',
-              style: TextStyle(fontSize: 24)
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            TextField(controller: _controller1),
-            const TextField(
+            TextField(controller: _controller1,
                 decoration: InputDecoration(
                     hintText:"Login",
                     border: OutlineInputBorder(),
                     labelText: "Login name"
                 )),
-            TextField(controller: _controller2),
-            const TextField(
-                decoration: InputDecoration(
+            TextField(
+                controller: _controller2,
+                obscureText: true,
+                decoration: const InputDecoration(
                     hintText:"Password",
                     border: OutlineInputBorder(),
                     labelText: "Password"
