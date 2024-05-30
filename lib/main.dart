@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
-late TextEditingController _controller1;
-late TextEditingController _controller2;
-var imageSource = "images/question-mark.png";
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,15 +12,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Recipe Browser',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title:" "),
     );
   }
-}
+        }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -34,78 +33,128 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller1 = TextEditingController();
-    _controller2 = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _controller1.dispose();
-    _controller2.dispose();
-    super.dispose();
-  }
-  void buttonClicked() {
-    setState(() {
-      if (_controller2.text == "QWERTY123") {
-        imageSource = "images/idea.png";
-      } else {
-        imageSource = "images/stop.png";
-      }
-    });
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return const Scaffold(
+      body:
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            TextField(controller: _controller1,
-                decoration: InputDecoration(
-                    hintText:"Login",
-                    border: OutlineInputBorder(),
-                    labelText: "Login name"
-                )),
-            TextField(
-                controller: _controller2,
-                obscureText: true,
-                decoration: const InputDecoration(
-                    hintText:"Password",
-                    border: OutlineInputBorder(),
-                    labelText: "Password"
-                )),
-            ElevatedButton(
-              onPressed: () {
-                buttonClicked();
-              },
-              child: const Text("Login"),
+            Text(
+                'BROWSE CATEGORIES',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
             ),
-            const SizedBox(height: 20),
-            Image.asset(imageSource, width: 300, height: 300),
-          ],
+            Text(
+              'Not sure about exactly which recipe you\'re looking for? Do a search, or dive into our most popular categories.',
+              textAlign: TextAlign.start,
+              style: TextStyle(fontSize: 16),
+            ),
+            Text(
+                'BY MEAT',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: AssetImage('images/Beef.jpg'),
+                          radius: 100,
+                        ),
+                        Text("BEEF", style: TextStyle(fontSize: 23,color: Colors.white),)
+                      ],
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: AssetImage('images/Chicken.jpg'),
+                          radius: 100,
+                        ),
+                        Text("CHICKEN", style: TextStyle(fontSize: 23,color: Colors.white))
+                      ],
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: AssetImage('images/Pork.jpg'),
+                          radius: 100,
+                        ),
+                        Text("PORK", style: TextStyle(fontSize: 23,color: Colors.white))
+                      ],
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: AssetImage('images/Seafood.jpg'),
+                          radius: 100,
+                        ),
+                        Text("SEAFOOD", style: TextStyle(fontSize: 23,color: Colors.white))
+                      ],
+                    ),
+                  ],
+                ),
+
+            Text(
+                'BY COURSE',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Main dishes.jpg'),
+                      radius: 100,
+                    ),
+                    Text('Main Dishes', style: TextStyle(fontSize: 23)),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Salad.jpg'),
+                      radius: 100,
+                    ),
+                    Text('Salad Recipes', style: TextStyle(fontSize: 23)),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Side Dishes.jpg'),
+                      radius: 100,
+                    ),
+                    Text('Side Dishes', style: TextStyle(fontSize: 23)),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Crockpot.jpg'),
+                      radius: 100,
+                    ),
+                    Text('Crockpot', style: TextStyle(fontSize: 23)),
+                  ],
+                ),
+              ],
+            ),
+              ],
+            ),
+      ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
